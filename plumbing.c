@@ -26,6 +26,7 @@ int main() {
 			char s[100];
 			write(ptoc[WRITE], buffer, sizeof(buffer));
 			read(ctop[READ], s, sizeof(s));
+            
 			printf("%s\n", s);
 		}
 	} else {
@@ -35,7 +36,10 @@ int main() {
 		char s[100];
 		while(read(ptoc[READ], s, sizeof(s))) {
 			s[strlen(s)-1] = '\0';
-			write(ctop[WRITE], strcat(s, "<3"), strlen(s) + 2);
+            strcat(s, "<3");
+            s[strlen(s)] = '\0';
+            //printf("%s\n", s);
+			write(ctop[WRITE], s, strlen(s)+1);
 			s[0] = '\0';
 		}
 	}
